@@ -62,7 +62,7 @@ contract TokenTimeLock is Ownable {
     }
 
     function release() public onlyOwner {
-        uint256 releasable = releaseRemain();
+        uint256 releasable = canReleaseNum();
         if (releasable > 0) {
             erc20Released += releasable;
             emit TokensReleased(releasable);
@@ -70,8 +70,8 @@ contract TokenTimeLock is Ownable {
         }
     }
 
-    function releaseRemain() public view returns (uint256) {
-        return vestedAmount(uint256(block.timestamp)) - erc20Released;
+    function canReleaseNum() public view returns (uint256) {
+        return vestedAmount(uint256(block.timestamp));
     }
 
     function vestedAmount(uint256 timestamp) public view returns (uint256) {
@@ -79,16 +79,16 @@ contract TokenTimeLock is Ownable {
             return 0;
         }
         if (timestamp >= releaseTimes[releaseTimes.length - 1]) {
-            return amount;
+            return IERC20(token).balanceOf(address(this));
         }
-        uint256 release;
+        uint256 releaseNum;
         for (uint8 i = 0; i < releaseTimes.length; i++) {
             if (timestamp >= releaseTimes[i]) {
-                release = (i + 1) * releaseAmount;
+                releaseNum = (i + 1) * releaseAmount - erc20Released;
             } else {
                 break;
             }
         }
-        return release;
+        return releaseNum;
     }
 }

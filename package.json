@@ -1,5 +1,5 @@
 {
-  "name": "zksync20",
+  "name": "tokentimelock",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -29,7 +29,6 @@
     "typescript": "^5.1.3"
   },
   "dependencies": {
-    "@opengsn/contracts": "^3.0.0-beta.6",
     "@openzeppelin/contracts": "^4.9.0"
   }
 }
