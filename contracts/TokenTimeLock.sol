@@ -71,11 +71,17 @@ contract TokenTimeLock is Ownable {
         if (timestamp >= releaseTimes[releaseTimes.length - 1]) {
             return IERC20(token).balanceOf(address(this));
         }
-        uint256 releaseNum;
+        uint256 releaseNum = 0;
         for (uint8 i = 0; i < releaseTimes.length; i++) {
             if (timestamp >= releaseTimes[i]) {
-                if (((i + 1) * releaseAmount - erc20Released) > 0) {
+                if ((i + 1) * releaseAmount >= erc20Released) {
                     releaseNum = (i + 1) * releaseAmount - erc20Released;
+                }
+                if (releaseNum > 0) {
+                    uint256 balance = IERC20(token).balanceOf(address(this));
+                    if (releaseNum > balance) {
+                        releaseNum = balance;
+                    }
                 }
             } else {
                 break;
