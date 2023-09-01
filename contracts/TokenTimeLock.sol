@@ -8,7 +8,6 @@ contract TokenTimeLock is Ownable {
     event TokensLocked(
         uint256 amount,
         uint256 releaseAmount,
-        uint256 start,
         uint256[] releaseTimes
     );
     event TokensReleased(uint256 amount);
@@ -16,7 +15,6 @@ contract TokenTimeLock is Ownable {
     address public token;
     uint256 public amount;
     uint256 public releaseAmount;
-    uint256 public start;
     uint256[] public releaseTimes;
 
     uint256 public erc20Released;
@@ -25,13 +23,11 @@ contract TokenTimeLock is Ownable {
         address token_,
         uint256 amount_,
         uint256 releaseAmount_,
-        uint256 start_,
         uint256[] memory releaseTimes_
     ) {
         require(token_ != address(0), "Token is the zero address");
         require(amount_ > 0, "Total amount should be greater than 0");
         require(releaseAmount_ > 0, "Release amount should be greater than 0");
-        require(start_ > block.timestamp, "Start time must be in the future");
         require(
             releaseTimes_.length > 0,
             "Release time must more than release time"
@@ -39,10 +35,6 @@ contract TokenTimeLock is Ownable {
         require(
             releaseTimes_[0] > block.timestamp,
             "Release time must be in the future"
-        );
-        require(
-            releaseTimes_[0] > start_,
-            "Release time must more than release time"
         );
 
         for (uint8 i = 1; i < releaseTimes_.length; i++) {
@@ -55,10 +47,9 @@ contract TokenTimeLock is Ownable {
         token = token_;
         amount = amount_;
         releaseAmount = releaseAmount_;
-        start = start_;
         releaseTimes = releaseTimes_;
 
-        emit TokensLocked(amount_, releaseAmount_, start_, releaseTimes_);
+        emit TokensLocked(amount_, releaseAmount_, releaseTimes_);
     }
 
     function release() public onlyOwner {
