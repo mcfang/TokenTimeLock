@@ -2,12 +2,12 @@ require("@nomiclabs/hardhat-ethers");
 require("@nomiclabs/hardhat-etherscan");
 
 module.exports = {
-  defaultNetwork: "goerli",
+  defaultNetwork: "mainnet",
   networks: {
     hardhat: {
     },
-    goerli: {
-      url: "https://rpc.ankr.com/eth_goerli",
+    mainnet: {
+      url: "https://rpc.ankr.com/eth",
       accounts: ["private_key"]
     }
   },
