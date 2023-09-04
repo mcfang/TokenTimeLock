@@ -1,13 +1,11 @@
 # TokenTimeLock Contract
 
-Deloy on Polygon
+Deloy on Goerli
 
-https://polygonscan.com/myapikey
+https://https://etherscan.io/myapikey
 
 npx hardhat compile
 
-npx hardhat run scripts/deploy.ts --network matic
-npx hardhat run scripts/deploy.ts --network polygon_mumbai
+npx hardhat run scripts/deploy.ts --network goerli
 
-npx hardhat verify --contract contracts/TokenTimeLock.sol:TokenTimeLock --network polygon_mumbai --constructor-args arguments.ts <contracr_address>
-npx hardhat verify --contract contracts/TokenTimeLock.sol:TokenTimeLock --network matic <contracr_address>
+npx hardhat verify --contract contracts/TokenTimeLock.sol:TokenTimeLock --network goerli --constructor-args arguments.ts <contracr_address>

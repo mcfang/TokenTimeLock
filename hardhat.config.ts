@@ -2,18 +2,14 @@ require("@nomiclabs/hardhat-ethers");
 require("@nomiclabs/hardhat-etherscan");
 
 module.exports = {
-  defaultNetwork: "polygon_mumbai",
+  defaultNetwork: "goerli",
   networks: {
     hardhat: {
     },
-    polygon_mumbai: {
-      url: "https://rpc-mumbai.maticvigil.com",
+    goerli: {
+      url: "https://rpc.ankr.com/eth_goerli",
       accounts: ["private_key"]
-    },
-    // matic: {
-    //   url: "https://polygon.llamarpc.com",
-    //   accounts: [""]
-    // }
+    }
   },
   etherscan: {
     apiKey: "api_key"
