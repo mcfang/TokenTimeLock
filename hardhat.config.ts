@@ -9,11 +9,7 @@ module.exports = {
     polygon_mumbai: {
       url: "https://rpc-mumbai.maticvigil.com",
       accounts: ["private_key"]
-    },
-    // matic: {
-    //   url: "https://polygon.llamarpc.com",
-    //   accounts: [""]
-    // }
+    }
   },
   etherscan: {
     apiKey: "api_key"
