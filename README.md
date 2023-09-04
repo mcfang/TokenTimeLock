@@ -1,6 +1,6 @@
 # TokenTimeLock Contract
 
-Deloy on Goerli
+Deploy on ethereum goerli testnet.
 
 https://https://etherscan.io/myapikey
 
