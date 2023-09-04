@@ -1,6 +1,6 @@
 # TokenTimeLock Contract
 
-Deloy on ethereum mainnet.
+Deploy on ethereum mainnet.
 
 https://https://etherscan.io/myapikey
 
